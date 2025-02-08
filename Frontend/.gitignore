@@ -17,8 +17,6 @@ yarn-error.log*
 Thumbs.db
 
 # Build directories
-build/
-dist/
 
 # Optional npm cache directory
 .npm/
