@@ -10,9 +10,9 @@ import { getCategoryByStatus } from '../services/categoryService';
 
 export const LineGraph = () =>{
     const [resultAmount,setResultAmount] = useState([0,0,0,0,0,0,0,0,0,0,0,0])
-    const [year,setYear] = useState(2023)
+    const [year,setYear] = useState(2025)
     const [status,setStatus] = useState('Pending')
-    const [categoryId,setCategoryId]=useState(505)
+    const [categoryId,setCategoryId]=useState(0)
 
     const [categoryList,setCategoryList] = useState([])
 
@@ -87,9 +87,10 @@ const getCategories = () => {
         <div class="form-group  mb-2">
     <label for="inputPassword3" class="sr-only">Year</label>
     <select className="form-control" id="inputPassword3" onChange={(e)=>setYear(e.target.value)}>
-            <option>2021</option>
-            <option>2022</option>
-            <option>2023</option>
+            <option>Select Year</option>
+            <option>2024</option>
+            <option>2025</option>
+            <option>2026</option>
           </select>
   </div>
   </div>

@@ -31,7 +31,7 @@ export const Header = () => {
         </div>
         <div className="navbar-menu-wrapper d-flex align-items-stretch">
           <button className="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-            <span className="mdi mdi-menu text-light"></span>
+            <span className="mdi mdi-menu text-light"><b>Expense Management System</b></span>
             {/* <Icon path={mdiMenu} size={.8} className="text-light"/> */}
           </button>
           <ul className="navbar-nav navbar-nav-right">

@@ -24,6 +24,6 @@ export const getEmployeeById = async (id) => {
 }
 
 export const getManagerByEmpId = async (id) => {
-    const response = await axios.get(HTTP_REST_API_LINK+"/getManagerByempId/"+id)
+    const response = await axios.get(HTTP_REST_API_LINK+"/getManagerByempId/"+id,{headers:authHeader()})
     return response
 }

@@ -62,7 +62,7 @@ const getDataPie = () =>{
                   <div class="card-body">
                     <h4 class="card-title">Approved Expenses</h4>
                     <Bar data={{
-                        labels: ["2019", "2020", "2021", "2022", "2023"],
+                        labels: ["2023", "2024", "2025", "2026", "2027"],
                         datasets: [{
                           label: 'Year wise Approved Expenses',
                           data: dataBar.reverse(),

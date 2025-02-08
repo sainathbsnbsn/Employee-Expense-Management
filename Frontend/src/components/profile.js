@@ -3,7 +3,7 @@ import Icon from '@mdi/react';
 import { mdiAccount, mdiBellOutline, mdiPlus } from '@mdi/js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { PageHeader } from './pageHeader';
-import { getEmployeeById } from '../services/employeeSecured';
+import { getEmployeeById, getManagerByEmpId } from '../services/employeeSecured';
 import { useNavigate } from 'react-router-dom';
 
 export const Profile = () =>{
@@ -31,7 +31,7 @@ export const Profile = () =>{
     })
   }
   const getManagerDetails =()=>{
-    getEmployeeById(user.username).then((response)=>{
+    getManagerByEmpId(user.username).then((response)=>{
      
       setMng(response.data)
       console.log(response.data)
