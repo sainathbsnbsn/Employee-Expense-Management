@@ -184,7 +184,7 @@ public class ExpenseController {
 			            EmployeeDetailsDto  ep = empService.Update(e);
 			            
 //			        Manager Fund Released
-			            e=empService.getEmployeeById("G3CABGYP28BYXEDF");
+			            e=empService.getEmployeeById("222222");
 			            Long total1 = e.getFundsReleased()+userDTO.getAmount();
 			            e.setFundsReleased(total1);
 			            EmployeeDetailsDto  m = empService.Update(e);
@@ -352,6 +352,20 @@ public class ExpenseController {
 		                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
 		            }
 		        }
+
+
+	@Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
+	@GetMapping("/getExpenseStatusCategoryEmpId/{status}/{categoryId}/{associateId}")
+	@PreAuthorize("hasAuthority('Manager') or hasAuthority('Employee')")
+	public ResponseEntity<List<ExpenseDto>> getExpensesByStatusByCategoryByEmpId(@PathVariable("status") String status,
+																		  @PathVariable("categoryId")  Long categoryId, @PathVariable("associateId") String associateId) throws ExpenseException{
+		try {
+			List<ExpenseDto> expenseList=expenseService.getExpensesByStatusByCategoryByEmployeeId(status,categoryId, associateId);
+			return ResponseEntity.ok(expenseList);
+		}catch(ExpenseException e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
+		}
+	}
 		        
 		    
 		     // http://localhost:8888/expense/report/getTotalAmountByCategoryInBetween

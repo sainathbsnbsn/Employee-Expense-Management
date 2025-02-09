@@ -54,5 +54,7 @@ public interface ExpenseService {
 
     
     public Long getAmountByStatusLastFiveYearWise(LocalDate fromDate,LocalDate toDate,String status,String empId) throws ExpenseException;
+
+    List<ExpenseDto> getExpensesByStatusByCategoryByEmployeeId(String status, Long categoryId, String associateId) throws ExpenseException;
 // no need  public boolean setStatusofExpenseRequest(Expense e, String status) throws ExpenseException;
 }

@@ -3,6 +3,7 @@ package com.web.service;
 import java.util.List;
 
 import com.web.repository.CategoryRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class CategoryServiceImpl implements CategoryService{
 	@Override
 	public CategoryDTO addCategory(CategoryDTO categoryDTO) {
 		CategoryEntity categoryEntity=modelMapper.map(categoryDTO,CategoryEntity.class);
-		categoryEntity.setId(null);
+		if (categoryEntity.getId() == null || StringUtils.isEmpty(categoryEntity.getId().toString())) categoryEntity.setId(null);
 		repo.save(categoryEntity);
 		return modelMapper.map(categoryEntity,CategoryDTO.class);
 	}
@@ -37,6 +38,7 @@ public class CategoryServiceImpl implements CategoryService{
 			categoryEntity.setName(updateCategoryDTO.getName());
 			categoryEntity.setLimit(updateCategoryDTO.getLimit());
 			categoryEntity.setStatus(updateCategoryDTO.getStatus());
+			addCategory(modelMapper.map(categoryEntity, CategoryDTO.class));
 			return modelMapper.map(categoryEntity, CategoryDTO.class);
 		}else {
 			return null;

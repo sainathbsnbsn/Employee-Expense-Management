@@ -43,7 +43,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth->{
-                	auth.requestMatchers("expense/authenticate","expense/new","category/add","category/update/{id}","category/delete/{id}","category/getall","category/get/{id}","category/status/{status}","expense/report/getreceipt/{id}","/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**").permitAll()
+                	auth.requestMatchers("expense/authenticate","expense/new","category/add","category/update/{id}","category/delete/{id}","category/getall","category/get/{id}","category/status/{status}","expense/report/getreceipt/{id}","/swagger-ui.html","swagger-ui/index.html**","expense/employee/update/{associateId}", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**").permitAll()
                 	.requestMatchers("/", "/error", "/csrf", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**").permitAll()
                     .requestMatchers("expense/welcome","expense/welcomeemployee",
                     		"expense/report/add",
@@ -67,12 +67,14 @@ public class SecurityConfig {
                     		"expense/employee/getworkerId/{id}",
                     		"expense/employee/getEmployeebymngId/{managerId}",
                     		"expense/employee/getall",
-                    		"expense/employee/get/{empId}",
-                    		"expense/report/getAmountBystatusByAssIdPresentYear/{status}/{associateId}",                   		
+							"expense/employee/get/{empId}",
+							"expense/employee/getManagerByempId/{empId}",
+                    		"expense/report/getAmountBystatusByAssIdPresentYear/{status}/{associateId}",
                     		"expense/report/get/{expenseId}/{empid}",        
                     		"expense/report/getAmountByStatusByEmpId/{status}/{associateId}",
                     		"expense/report/getExpensesByCategoryIdPagenation/{status}/{pageno}/{rows}",
-                    		"expense/report/getAmountByStatusLastFiveYearWise/{empId}"
+                    		"expense/report/getAmountByStatusLastFiveYearWise/{empId}",
+							"getExpenseStatusCategoryEmpId/{status}/{categoryId}/{associateId}"
                     		).authenticated();
                })
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

@@ -199,6 +199,8 @@ public class ExpenseServiceImpl implements ExpenseService {
             throw new ExpenseException(e.getMessage(),e);
         }
     }
+
+
 	
 	@Override
 	public Long getAmountByCategory(Long categoryId) throws ExpenseException {
@@ -393,5 +395,25 @@ public class ExpenseServiceImpl implements ExpenseService {
             }
         
     }
+
+	@Override
+	public List<ExpenseDto> getExpensesByStatusByCategoryByEmployeeId(String status, Long categoryId, String associateId) throws ExpenseException {
+		try {
+			List<Expense> expenseList=expenseRepository.getExpensesByStatusByCategoryByEmployee(status,categoryId, associateId);
+			//System.out.println(expenseList.size());
+			List<ExpenseDto> expenseDtoList=new ArrayList<>();
+
+			expenseList.forEach(expense -> {
+				expenseDtoList.add(modelMapper.map(expense, ExpenseDto.class));
+			});
+
+			return expenseDtoList;
+
+
+		}catch(DataAccessException e) {
+			throw new ExpenseException(e.getMessage(),e);
+		}
+	}
+
 
 }

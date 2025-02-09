@@ -27,7 +27,10 @@ public interface ExpenseRepository  extends JpaRepository<Expense,Long>{
 	
     @Query(value="Select * from season2_batch2_team3_expense_ems_test e where e.status=:status and e.category_id=:categoryId order by e.submission_date desc",nativeQuery=true)
     List<Expense> getExpensesByStatusByCategory(@Param ("status")String status, @Param ("categoryId")Long categoryId);
-	
+
+	@Query(value="Select * from season2_batch2_team3_expense_ems_test e where e.status=:status and e.category_id=:categoryId and e.associateId=:associateId order by e.submission_date desc",nativeQuery=true)
+	List<Expense> getExpensesByStatusByCategoryByEmployee(@Param ("status")String status, @Param ("categoryId")Long categoryId, @Param ("associateId")String associateId);
+
 	@Query(value="Select sum(amount) from season2_batch2_team3_expense_ems_test e where e.category_id=:categoryId",nativeQuery=true)
 	Long getAmountByCategory(@Param("categoryId") Long categoryId);
 	
@@ -48,7 +51,7 @@ public interface ExpenseRepository  extends JpaRepository<Expense,Long>{
 	Long getAmountByStatusByEmpId(@Param("status") String status,@Param("associateId") String associate);
 	
 	@Query(value="Select * from season2_batch2_team3_expense_ems_test e where e.status=:status order by  e.submission_date desc",
-            countQuery="Select count(*) from season2_batch2_team3_expense_ems e where e.status=:status order by  e.submission_date desc",nativeQuery=true)
+            countQuery="Select count(*) from season2_batch2_team3_expense_ems_test e where e.status=:status order by  e.submission_date desc",nativeQuery=true)
     Page<Expense> getPagewiseExpensesByStatus(@Param("status") String status,Pageable pageable);
 	
 	@Query(value="select sum(amount) from season2_batch2_team3_expense_ems_test e where (e.status=:status) and (e.associate_id=:associateId) and (e.approved_date  between :fromDate and :toDate)" ,nativeQuery=true)

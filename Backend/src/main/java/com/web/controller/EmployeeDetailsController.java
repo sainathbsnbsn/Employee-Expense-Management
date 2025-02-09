@@ -51,7 +51,7 @@ public class EmployeeDetailsController {
 	//  http://localhost:8888/expense/employee/get/GGGAV8HGSGVDCB31
     @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
 	@GetMapping("/get/{empId}")
-	@PreAuthorize("hasAuthority('Senior Payroll Specialist') or hasAuthority('Site Engineer I-A') or hasAuthority('Manager')")
+	@PreAuthorize("hasAuthority('Senior Payroll Specialist') or hasAuthority('Site Engineer I-A') or hasAuthority('Manager') or hasAuthority('user') or hasAuthority('Employee')")
 	public ResponseEntity<EmployeeDetailsDto> getEmployeeById(@PathVariable("empId") String empId) throws EmployeeException{ 
 		try {
 			EmployeeDetailsDto employee=empService.getEmployeeById(empId);
@@ -94,6 +94,7 @@ public class EmployeeDetailsController {
 		// http://localhost:8888/expense/employee/getManagerByempId/E1MNF0AE01F0TRNB
     @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
 		@GetMapping("getManagerByempId/{empId}")
+	@PreAuthorize("hasAuthority('Senior Payroll Specialist') or hasAuthority('Site Engineer I-A') or hasAuthority('Manager') or hasAuthority('user') or hasAuthority('Employee')")
 		public ResponseEntity<EmployeeDetailsDto> getManagerByempId(@PathVariable("empId") String empId ) throws EmployeeException{
 		try {
 		EmployeeDetailsDto manager=empService.getManagerByempId(empId);
@@ -111,7 +112,8 @@ public class EmployeeDetailsController {
 		//http://localhost:8888/expense/employee/update/associateId
     @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
         @PutMapping("/update/{associateId}")
-        public ResponseEntity<EmployeeDetailsDto> updateEmployee(@PathVariable String associateId ,@RequestBody  EmployeeDetailsDto userDTO,
+	@PreAuthorize("hasAuthority('Senior Payroll Specialist') or hasAuthority('Site Engineer I-A') or hasAuthority('Manager') or hasAuthority('user') or hasAuthority('Employee')")
+	public ResponseEntity<EmployeeDetailsDto> updateEmployee(@PathVariable String associateId ,@RequestBody  EmployeeDetailsDto userDTO,
                 BindingResult bindingResult) throws ExpenseException {
         
         try {
