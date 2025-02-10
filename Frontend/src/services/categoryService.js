@@ -1,8 +1,8 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-const HTTP_REST_API_LINK = 'https://cbc8-2405-201-c007-41dd-3c11-fa3d-b1a5-7950.ngrok-free.app/category';
-// const HTTP_REST_API_LINK = "http://localhost:8888/category"
+// const HTTP_REST_API_LINK = 'employee-expense-management-jwt-production.up.railway.app/category';
+const HTTP_REST_API_LINK = "http://localhost:8888/category"
 
 export const addCategory = async (category) => {
     const response = await axios.post(HTTP_REST_API_LINK+"/add",category,{headers:authHeader()})
