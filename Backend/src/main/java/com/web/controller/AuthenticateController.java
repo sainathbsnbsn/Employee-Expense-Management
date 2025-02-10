@@ -27,7 +27,7 @@ import com.web.service.EmployeeDetailsService;
 import com.web.service.JwtService;
 
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/expense")
 public class AuthenticateController {
