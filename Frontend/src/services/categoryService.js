@@ -1,8 +1,8 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-// const HTTP_REST_API_LINK = 'employee-expense-management-jwt-production.up.railway.app/category';
-const HTTP_REST_API_LINK = "http://localhost:8888/category"
+const HTTP_REST_API_LINK = 'https://employee-expense-management-jwt-production.up.railway.app/category';
+// const HTTP_REST_API_LINK = "http://localhost:8888/category"
 
 export const addCategory = async (category) => {
     const response = await axios.post(HTTP_REST_API_LINK+"/add",category,{headers:authHeader()})

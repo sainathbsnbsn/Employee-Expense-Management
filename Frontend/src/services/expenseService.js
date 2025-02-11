@@ -19,7 +19,7 @@ export const addExpenseReceipt = async (id,file) => {
 
 export const getExpenseReceiptById=async(id)=>{
      
-       const response = await axios('http://localhost:8888/expense/report/getreceipt/'+id, {
+       const response = await axios(HTTP_REST_API_LINK+'/getreceipt/'+id, {
     
     
         method: 'GET',
