@@ -37,7 +37,7 @@ export const Card = ({status,icon,bg})=>{
     if(status=='Approved'){
         if(user.role!='Manager'){
         getAmountBystatusByEmpIdPresentYear('approved',user.username).then((response)=>{
-            setAmount(response.data)
+            response.data === '' ? setAmount(0) : setAmount(response.data);
         }).catch((error)=>{
             console.log(error)
         })

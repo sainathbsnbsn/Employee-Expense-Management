@@ -10,9 +10,10 @@ import { mdiAccountArrowLeftOutline } from '@mdi/js';
 import { Link } from 'react-router-dom';
 import profile_pic from '../images/profile_pic.jpg';
 import { getEmployeeById } from '../services/employeeSecured';
+import { left } from '@popperjs/core';
 
 
-export const Header = () => {
+export const Header = ({ toggleSidebar, isSidebarOpen}) => {
   const user = JSON.parse(localStorage.getItem('user'))
   const [empName,setEmpName] = useState()
   useEffect(()=>{
@@ -26,13 +27,18 @@ export const Header = () => {
         <>
         <nav className="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row bg-danger text-light border-info">
         <div className="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          <a className="navbar-brand brand-logo" href="index.html"><img src={logo} alt="logo" /></a>
-          <a className="navbar-brand brand-logo-mini" href="index.html"><img src={logo} alt="logo" /></a>
+        <button className={`navbar-toggler navbar-toggler align-self-center menu`} type="button" data-toggle="minimize" onClick={toggleSidebar} style={{outline: 'none', border: 'none', marginLeft: '20px'}}>
+            <Icon path={mdiMenu} size={.8} className="text-danger"/>
+          </button>
+          <a className="navbar-brand brand-logo" href="#"><img src={logo} alt="logo" /></a>
+          {/* <a className="navbar-brand brand-logo-mini" href="#"><img src={logo} alt="logo" /></a> */}
         </div>
+        <button className="navbar-toggler navbar-toggler-small small" type="button" style={{float: left}}>
+            <span className="mdi mdi-menu text-light"><b>EMS Portal</b></span>
+          </button>
         <div className="navbar-menu-wrapper d-flex align-items-stretch">
-          <button className="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <button className="navbar-toggler navbar-toggler align-self-center full" type="button" data-toggle="minimize">
             <span className="mdi mdi-menu text-light"><b>Expense Management System</b></span>
-            {/* <Icon path={mdiMenu} size={.8} className="text-light"/> */}
           </button>
           <ul className="navbar-nav navbar-nav-right">
           {/* <Notification /> */}

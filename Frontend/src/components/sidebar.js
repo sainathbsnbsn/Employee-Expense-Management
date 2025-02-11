@@ -8,11 +8,11 @@ import { mdiCancel, mdiController, mdiControllerClassic, mdiControllerClassicOut
 import { mdiLogout } from '@mdi/js';
 
 
-export const SideBar = () => {
+export const SideBar = ({isSidebarOpen}) => {
   const user = JSON.parse(localStorage.getItem('user'))
     return (
         <>
-        <nav className="sidebar sidebar-offcanvas" id="sidebar">
+        <nav className={`sidebar sidebar-offcanvas ${isSidebarOpen ? 'open' : 'close'}`} id="sidebar">
           <ul className="nav">
             <li className="nav-item">
               <Link className="nav-link" to="/">
