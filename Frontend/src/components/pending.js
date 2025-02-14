@@ -157,7 +157,7 @@ getCategoryByStatus('active').then((response) => {
     return(
         <>
          <div className='col-md-4'>
-         {(user.role=='Manager' && categoryId==1)?(
+         {(user.role=='Manager')?(
           <div class="form-group  mb-2">
           <label for="inputPassword1" class="sr-only">Category</label>
             <select className="form-control" id="exampleSelectCategory"  onChange={(e)=>setCategoryId(e.target.value)}>
