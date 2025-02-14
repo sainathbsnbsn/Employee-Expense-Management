@@ -255,30 +255,24 @@ public class ExpenseServiceImpl implements ExpenseService {
 	}
 	
 	@Override
-    public String addExpenseById(MultipartFile file, Long id) throws ExpenseException {
-        if(!file.isEmpty()) {
-            try {
-                byte[] compressedImageData = ImageUtils.compressImage(file.getBytes());
+    public String addExpenseById(String fileURL, Long id) throws ExpenseException {
+        if(!fileURL.isEmpty()) {
                 Optional<Expense> optional = expenseRepository.findById(id);
                 Expense customer = optional.orElseThrow(() -> new
                         ExpenseException("CUSTOMER_NOT_FOUND"));
-                customer.setReceipt(compressedImageData);
+                customer.setReceipt(fileURL);
                 Expense expense= expenseRepository.save(customer);
-                
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
             }
             // TODO Auto-generated method stub
-            return "Done";
+		//
+            return "failed";
     }
 
     @Override
-    public byte[] getReceiptByExpId(Long id) throws ExpenseException {
+    public String getReceiptByExpId(Long id) throws ExpenseException {
         Optional<Expense>receipt = expenseRepository.findById(id);
-        byte[]receipts=ImageUtils.decompressImage(receipt.get().getReceipt());
-        return receipts;
+
+        return receipt.get().getReceipt();
     }
 //
 //	@Override

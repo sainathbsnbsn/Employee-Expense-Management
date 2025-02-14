@@ -2,11 +2,13 @@ package com.web.controller;
 
 import static com.web.config.SwaggerConfig.BEARER_KEY_SECURITY_SCHEME;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.web.dto.ExpenseDto;
+import com.web.service.S3Service;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,6 +48,9 @@ public class ExpenseController {
 	
 	@Autowired
 	private ExpenseService expenseService;
+
+	@Autowired
+	private S3Service s3Service;
 	
 	 @Autowired
 	 private EmployeeDetailsService empService;
@@ -478,8 +483,9 @@ public class ExpenseController {
 		     			+ " hasAuthority('Senior Payroll Specialist') or"
 		     			+ " hasAuthority('Site Engineer I-A')"
 		     			+ " or hasAuthority('Manager')")
-		            public String addExpenseRecipt(@PathVariable("id") Long id,@RequestParam("file") MultipartFile file) throws ExpenseException {
-		                String s=expenseService.addExpenseById(file, id);
+		            public String addExpenseRecipt(@PathVariable("id") Long id,@RequestParam("file") MultipartFile file) throws ExpenseException, IOException {
+					 String fileURL=s3Service.uploadFile(file);
+					 String s=expenseService.addExpenseById(fileURL, id);
 		                return s;
 		            }
 		            
@@ -488,11 +494,9 @@ public class ExpenseController {
 		         @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
 		         @GetMapping("/getreceipt/{id}")
 //		         @PreAuthorize("hasAuthority('Manager')")
-		            public ResponseEntity<?> getExpenseById1(@PathVariable("id") Long id) throws ExpenseException {
-		                byte[] receipt=expenseService.getReceiptByExpId(id);
-		                return ResponseEntity.status(HttpStatus.ACCEPTED)
-		                                     .contentType(MediaType.valueOf("application/pdf"))
-		                                     .body(receipt);
+		            public ResponseEntity<String> getExpenseById1(@PathVariable("id") Long id) throws ExpenseException {
+		                String receipt=expenseService.getReceiptByExpId(id);
+		                return ResponseEntity.ok(s3Service.generatePresignedUrl(receipt));
 		            }
 		         
 		       

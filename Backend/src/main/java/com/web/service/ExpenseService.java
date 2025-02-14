@@ -37,10 +37,10 @@ public interface ExpenseService {
    
     List<ExpenseDto> getPagewiseExpensesByStatus(int pageno, int rows,String status) throws ExpenseException;
 
-    public String addExpenseById(MultipartFile file, Long id)throws ExpenseException;
+    public String addExpenseById(String file, Long id)throws ExpenseException;
     
     //get receipt by expense Id
-    public abstract byte[] getReceiptByExpId(Long id)throws ExpenseException;
+    public abstract String getReceiptByExpId(Long id)throws ExpenseException;
  
 
     // for paging

@@ -65,16 +65,15 @@ public class Expense {
     @Column(name = "business_purpose")
     private String businessPurpose;
 
-    @Lob
     @Column(name = "receipt")
-    private byte[] receipt;
+    private String receipt;
 
 
 
 
 	public Expense(Long categoryId, String category, Long amount, String managerId, String associateId, String status,
 			String managerComments, String employeeComments, LocalDate submissionDate, LocalDate approvedDate,
-			String businessPurpose, byte[] receipt) {
+			String businessPurpose, String receipt) {
 		super();
 		this.categoryId = categoryId;
 		this.category = category;
