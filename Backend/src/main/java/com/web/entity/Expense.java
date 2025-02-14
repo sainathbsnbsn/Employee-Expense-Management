@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,39 +27,47 @@ import lombok.ToString;
 @Table(name = "season2_batch2_team3_expense_ems_test")
 public class Expense {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long expenseId;
-	
-	//private String associateId;
-	
-	private Long categoryId;
-	
-	private String category;
-	
-	private Long amount;
-	
-	private String managerId;
-	
-	private String associateId;
-	
-	private String status;
-	
-	private String managerComments;
-	
-	private String employeeComments;
-	
-	private LocalDate submissionDate;
-	
-	private LocalDate approvedDate;
-	
-	private String businessPurpose;
-	
-	
-	
-	
-	@Lob
-	private byte[] receipt;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "expense_id")  // Maps field to DB column
+    private Long expenseId;
+
+    @Column(name = "category_id")
+    private Long categoryId;
+
+    @Column(name = "category")
+    private String category;
+
+    @Column(name = "amount")
+    private Long amount;
+
+    @Column(name = "manager_id")
+    private String managerId;
+
+    @Column(name = "associate_id")
+    private String associateId;
+
+    @Column(name = "status")
+    private String status;
+
+    @Column(name = "manager_comments")
+    private String managerComments;
+
+    @Column(name = "employee_comments")
+    private String employeeComments;
+
+    @Column(name = "submission_date")
+    private LocalDate submissionDate;
+
+    @Column(name = "approved_date")
+    private LocalDate approvedDate;
+
+    @Column(name = "business_purpose")
+    private String businessPurpose;
+
+    @Lob
+    @Column(name = "receipt")
+    private byte[] receipt;
 
 
 

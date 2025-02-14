@@ -51,7 +51,7 @@ public interface ExpenseRepository  extends JpaRepository<Expense,Long>{
 	Long getAmountByStatusByEmpId(@Param("status") String status,@Param("associateId") String associate);
 	
 	@Query(value="Select * from season2_batch2_team3_expense_ems_test e where e.status=:status order by  e.submission_date desc",
-            countQuery="Select count(*) from season2_batch2_team3_expense_ems_test e where e.status=:status order by  e.submission_date desc",nativeQuery=true)
+            countQuery="Select count(*) from season2_batch2_team3_expense_ems_test e where e.status=:status",nativeQuery=true)
     Page<Expense> getPagewiseExpensesByStatus(@Param("status") String status,Pageable pageable);
 	
 	@Query(value="select sum(amount) from season2_batch2_team3_expense_ems_test e where (e.status=:status) and (e.associate_id=:associateId) and (e.approved_date  between :fromDate and :toDate)" ,nativeQuery=true)
