@@ -67,26 +67,26 @@ export const AddExpense = () =>{
           setCategory(response.data.category)
           setEmployeeComments(response.data.employeeComments)
           setTitle("Update")
-         
         }).catch((error)=>{
           console.log(error)
         })
-        
+      }
+      else {
+          setSubmissionDate(currDate)
+          setAmount('')
+          setBusinessPurpose('')
+          setCategoryId()
+          setCategory('')
+          setEmployeeComments('')
+          setImage(demo_card)
+          setTitle("Add")
       }
       if(id){
         getExpenseReceiptById(id).then((response)=>{
-          const file = new Blob(
-            [response.data], 
-            {type: 'application/pdf'});
-          const fileURL = URL.createObjectURL(file);
-         setImage(fileURL)
+         setImage(response.data)
         })
-
           }
-
-
-
-    },[])
+    },[id,title])
 
     useEffect(()=>{
       getCategories();
@@ -260,8 +260,6 @@ const handleAmount = (id) => {
                     <p className="card-description"> The receipts shold be valid.</p>
                     <iframe className='card-img-top' alt="preview image" src={image} width='100%' height='550px'/>
                     </div>
-                   
-              
                 </div>
                 </div>
         </>
