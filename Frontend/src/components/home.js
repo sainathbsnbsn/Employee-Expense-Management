@@ -58,7 +58,7 @@ export const Home = () => {
             <div className="container-scroller">
                 <Header toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
                 <div className="container-fluid page-body-wrapper">
-                    <SideBar isSidebarOpen={isSidebarOpen} />
+                    <SideBar isSidebarOpen={isSidebarOpen} toggleSidebar = {toggleSidebar}/>
                     <DisplayArea />
                 </div>
             </div>

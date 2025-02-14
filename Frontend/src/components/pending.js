@@ -157,15 +157,16 @@ getCategoryByStatus('active').then((response) => {
     return(
         <>
          <div className='col-md-4'>
-        <div class="form-group  mb-2">
-    <label for="inputPassword1" class="sr-only">Category</label>
-    <select className="form-control" id="exampleSelectCategory"  onChange={(e)=>setCategoryId(e.target.value)}>
-                          <option value="1">All</option>
-                          { categoryList.map((type)=>(<option value={type.id}>{type.name}</option>))}
-                          
-                        </select>
-  </div>
-  </div>
+         {(user.role=='Manager' && categoryId==1)?(
+          <div class="form-group  mb-2">
+          <label for="inputPassword1" class="sr-only">Category</label>
+            <select className="form-control" id="exampleSelectCategory"  onChange={(e)=>setCategoryId(e.target.value)}>
+              <option value="1">All</option>
+              { categoryList.map((type)=>(<option value={type.id}>{type.name}</option>))}
+            </select>
+          </div>
+         ):(<></>)}
+        </div>
         {isLoading?(<Loader/>):(
           <>
          
@@ -176,6 +177,7 @@ getCategoryByStatus('active').then((response) => {
                    {(user.role!='Manager')?(<p className="card-description" > Edit / Delete 
                     </p>):(<></>)} 
                     {(user.role=='Manager')?(<button className='btn btn-outline-primary btn-sm' onClick={()=>setIsEmployee(isEmployee?false:true)}>{controls} Controls</button>):(<></>)}
+                    <div className='table-content'>
                     <table className="table table-hover">
                       <thead>
                         <tr>
@@ -218,6 +220,7 @@ getCategoryByStatus('active').then((response) => {
                           )}
                       </tbody>
                     </table>
+                    </div>
                   </div>
                 </div>
               </div>
