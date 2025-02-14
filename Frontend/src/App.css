@@ -3301,8 +3301,38 @@ progress {
   margin-bottom: 1rem;
   color: #212529;
   vertical-align: top;
-  border-color: #ebedf2; }
-  .table > :not(caption) > * > * {
+  border-color: #ebedf2;/* Enable horizontal scrolling */}
+  .table-content{
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+/* Custom scrollbar styling for WebKit browsers (Chrome, Safari) */
+.table-content::-webkit-scrollbar {
+  height: 8px; /* Scrollbar thickness */
+}
+
+.table-content::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track color */
+  border-radius: 10px;
+}
+
+.table-content::-webkit-scrollbar-thumb {
+  background: #888; /* Thumb color */
+  border-radius: 10px;
+}
+
+.table-content::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Thumb hover effect */
+}
+
+/* Firefox scrollbar (works in newer versions) */
+.table-content {
+  scrollbar-width: thin; /* Makes the scrollbar thinner */
+  scrollbar-color: #888 #f1f1f1; /* Thumb and track color */
+}
+
+   .table > :not(caption) > * > * {
     padding: 0.5rem 0.5rem;
     background-color: var(--bs-table-bg);
     border-bottom-width: 1px;
@@ -5658,6 +5688,7 @@ textarea.form-control-lg {
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.3125rem; }
+
   .card > hr {
     margin-right: 0;
     margin-left: 0; }
