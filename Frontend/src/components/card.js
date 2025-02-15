@@ -44,7 +44,7 @@ export const Card = ({status,icon,bg})=>{
     }
     else{
         getAmountByStatus('approved').then((response)=>{
-            setAmount(response.data)
+            response.data === '' ? setAmount(0) : setAmount(response.data);
         }).catch((error)=>{
             console.log(error)
         })

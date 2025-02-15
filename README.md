@@ -2,10 +2,13 @@
 This repository contains the complete code for an Expense Management System designed to help employees upload and track their expense statuses in a web-based application.
 
 Features:
+
 Expense Upload & Tracking: Employees can easily upload their expenses and monitor their current status, providing a clear and organized way to manage financial activities.
+Uploaded Bills or Receipts Storage: Uploaded bills or receipts are securely stored in an Amazon S3 bucket, ensuring reliable and scalable storage for all files.
 Backend Development: Built using Java Spring Boot, this backend implementation ensures the system is both scalable and robust, providing a strong foundation for handling multiple users and large amounts of data.
 Frontend Development: Designed with React.js, the frontend offers an intuitive and responsive user interface, ensuring a seamless and efficient user experience across all devices.
 Authentication & Security: The application is secured with JWT-based authentication, providing secure access for users while ensuring data integrity throughout the platform.
+
 Tech Stack:
 Frontend: React.js
 Backend: Java Spring Boot
