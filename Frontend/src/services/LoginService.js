@@ -10,6 +10,7 @@ export const authenticateUser = async (user) => {
         console.log(response)
         if(response){
             localStorage.setItem("user",JSON.stringify(response.data));
+            localStorage.setItem("notNew",JSON.stringify(response.data));
         }
     
     console.log(response);

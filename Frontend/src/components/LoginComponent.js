@@ -4,13 +4,13 @@ import { authenticateUser } from '../services/LoginService'
 import { Home } from './home'
 import { Profile } from './profile'
 import logo from '../images/logo.png'
-import image_bg from '../images/image_bg1.png'
+import image_bg from '../images/image_background.jpg'
 
-const LoginComponent=()=>{
+const LoginComponent=({openDemoCard, onOpenDemoCard})=>{
     const [username,setUsername]=useState('')
     const [password,setPassword]=useState('')
     const [empId,setEmpId] = useState('')
-
+    
     const bgStyle={
       backgroundImage:`url(${image_bg})`,
       backgroundSize:'cover',
@@ -46,6 +46,9 @@ const LoginComponent=()=>{
             console.log(error)
         })
     }
+    const closeDemoCard = () => {
+      onOpenDemoCard(false);
+    }
     return (
        
           
@@ -58,10 +61,26 @@ const LoginComponent=()=>{
                 <div class="brand-logo">
                   <img  src={logo} style={{width:'100px'}}/>
                 </div>
-                <h4>Wellcome to EMS Portal</h4>
-                <h6 class="font-weight-light">Sign in to continue.</h6>
+                <h4>Wellcome to the EMS Portal</h4>
                 {(isError==true)?(<small className='text-danger'>UserID or Password is Incorrect <button className='border-none' onClick={()=>setIsError(false)}>x</button></small>):<></>}
-                <form class="pt-3">
+                <div class={`form-group demo ${openDemoCard ? 'open' : 'close'}`}>
+                  <p>To explore the portal, you can use the following credentials:</p>
+                  <div class="">
+                  <div>
+                  <p><b>Employee credentials </b></p>
+                  <p>Username : 111111</p>
+                  <p>Password : 111111</p>
+                  </div>
+                  <div>
+                  <p><b>Manager credentials </b></p>
+                  <p>Username : 222222</p>
+                  <p>Password : 222222</p>
+                  </div>
+                  </div>
+                  <button className = "btn btn-primary" onClick = {() => closeDemoCard()} >Continue... </button>
+                </div>
+                <form class={`pt-3 login ${openDemoCard ? 'close' : 'open'}`}>
+                <h6 class="font-weight-light">Sign in to continue.</h6>
                   <div class="form-group">
                   <input
                                         type = "text"

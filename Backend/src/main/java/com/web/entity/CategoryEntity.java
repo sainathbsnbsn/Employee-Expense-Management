@@ -17,7 +17,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-@Table(name="season2_batch2_team3_category")
+@Table(name="category_table")
 public class CategoryEntity {
 	@Id
 	@GeneratedValue

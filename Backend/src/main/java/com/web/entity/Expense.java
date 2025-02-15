@@ -24,7 +24,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @Entity
-@Table(name = "season2_batch2_team3_expense_ems_test")
+@Table(name = "ems_table")
 public class Expense {
 	
     @Id

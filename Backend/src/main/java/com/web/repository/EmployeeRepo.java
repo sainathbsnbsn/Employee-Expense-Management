@@ -16,12 +16,12 @@ public interface EmployeeRepo extends JpaRepository<EmployeeDetails,String> {
 	
 	//custom query
 	
-	@Query(value="SELECT  * FROM  season2_batch2_team3_employee_ems a WHERE a.manager_id = :managerId",nativeQuery=true)
+	@Query(value="SELECT  * FROM  user_details_table a WHERE a.manager_id = :managerId",nativeQuery=true)
 	public List<EmployeeDetails> findEmployeesDetailsByManagerId(@Param("managerId") String managerId);
 	
 	public Optional<EmployeeDetails> findByAssociateId(String username);
 	
-	@Query(value="select * from season2_batch2_team3_employee_ems a where a.associate_id =:managerId",nativeQuery=true)
+	@Query(value="select * from user_details_table a where a.associate_id =:managerId",nativeQuery=true)
 	public EmployeeDetails getManagerByempId(@Param("managerId") String managerId);
 	
 }

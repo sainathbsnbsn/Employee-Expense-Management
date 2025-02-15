@@ -13257,6 +13257,22 @@ code {
 .form-group {
   margin-bottom: 1.5rem; }
 
+.form-group.demo.open {
+  display: block;
+}
+
+.form-group.demo.close {
+  display: none;
+}
+
+.login.open {
+  display: block;
+}
+
+.login.close {
+  display: none;
+}
+
 .input-group-append,
 .input-group-prepend {
   color: #c9c8c8;

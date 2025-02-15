@@ -19,7 +19,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-@Table(name = "season2_batch2_team3_employee_ems")
+@Table(name = "user_details_table")
 public class EmployeeDetails {
 	@Id
 	private String associateId;//(userId)
